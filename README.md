@@ -429,10 +429,3 @@ VALUES ('Admin', 'admin@gmail.com', '<encrypted_password>', true, 'ADMIN');
    * Email: `admin@gmail.com`
    * Password: (your original password before encryption)
 
-### Note
-
-In a production-ready system, this would be handled by:
-
-* Automatic admin seeding during application startup, OR
-* A secure initial registration flow
-
