@@ -165,7 +165,8 @@ This section lists all available backend endpoints for the Finance Data Processi
   - `password` (string, required)
 - **Response:**
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-
+- **Response Example:**
+ ![Admin Login Test](screenshots/postman-admin-login.png)
 
 * **Roles:** All users
 
@@ -190,6 +191,9 @@ This section lists all available backend endpoints for the Finance Data Processi
   ```
   User Created
   ```
+- **Response Example:**
+ ![Admin Login Test](screenshots/postman-admin-login.png)
+
 * **Roles:** Admin
 
 ---
@@ -210,6 +214,9 @@ This section lists all available backend endpoints for the Finance Data Processi
     }
   ]
   ```
+  - **Response Example:**
+ ![Admin Get All Users](screenshots/postman-admin-get-all-usesr.png)
+
 * **Roles:** Admin
 
 ---
@@ -228,6 +235,8 @@ This section lists all available backend endpoints for the Finance Data Processi
     "role": "ANALYST"
   }
   ```
+- **Response Example:**
+ ![Admin Get User By Email](screenshots/postman-admin-get-user-by-emailpng)
 * **Roles:** Admin
 
 ---
@@ -237,6 +246,8 @@ This section lists all available backend endpoints for the Finance Data Processi
 * **Endpoint:** `DELETE /users/{id}`
 * **Description:** Deletes a user by ID.
 * **Response:** `User Deleted`
+* - **Response Example:**
+ ![Admin Delete User](screenshots/postman-admin-delete-by-id.png)
 * **Roles:** Admin
 
 ---
@@ -398,4 +409,30 @@ This section lists all available backend endpoints for the Finance Data Processi
 
 ---
 
+## Assumptions & Initial Setup
+- The system requires at least one **ADMIN user** to perform privileged operations such as creating users and managing financial entries.
+- Currently, the first admin user must be **manually inserted into the database** before using the system.
+- This is required because all user creation endpoints are restricted to ADMIN role.
+
+### Initial Admin Setup (Required)
+
+1. Generate an encrypted password using BCrypt.
+2. Insert an admin user into the database manually:
+
+```sql
+INSERT INTO user (name, email, password, active, role)
+VALUES ('Admin', 'admin@gmail.com', '<encrypted_password>', true, 'ADMIN');
+````
+
+3. Use these credentials to log in:
+
+   * Email: `admin@gmail.com`
+   * Password: (your original password before encryption)
+
+### Note
+
+In a production-ready system, this would be handled by:
+
+* Automatic admin seeding during application startup, OR
+* A secure initial registration flow
 
